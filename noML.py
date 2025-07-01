@@ -1,3 +1,7 @@
+# this code is cool because it uses techniques like otsu's method
+# or CCA for finding licence plates
+
+# in other files I'll proceed to use ML to find license plates, but this one is fun start
 from skimage.io import imread
 from skimage.filters import threshold_otsu
 from skimage import measure
@@ -10,7 +14,7 @@ import matplotlib.patches as patches
 orig_im = imread("car.jpeg")
 grey_im = imread("car.jpeg", as_gray=True)
 
-# count threshold value using otsu method
+# count threshold value using otsu's method
 threshold_val = threshold_otsu(grey_im)
 # split image to background and foreground
 bin_im = grey_im > threshold_val
@@ -26,7 +30,7 @@ coords = []
 objects = []
 # in russia license plates are usually 520x112 mm
 ratio = 520 / 112
-# connected component analys    is to identify all the connected regions
+# connected component analys is to identify all the connected regions
 # (labels connected regions of an integer array)
 label_im = measure.label(bin_im)
 # regionprops creates a list of properties of all the labelled regions
